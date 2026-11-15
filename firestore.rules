@@ -1,0 +1,108 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Helper functions
+    function isAdmin() {
+      return request.auth != null && 
+        (request.auth.token.email == "mahantapurna1981@gmail.com" || 
+         request.auth.token.email == "mahantatusharranjan2007@gmail.com");
+    }
+
+    function isSeeding() {
+      return !exists(/databases/$(database)/documents/profile/main);
+    }
+    
+    // Profile: Public read, Admin write or initial seed
+    match /profile/{document} {
+      allow read: if true;
+      allow write: if isAdmin() || isSeeding();
+    }
+    
+    // Projects: Public read, Admin write or initial seed
+    match /projects/{document} {
+      allow read: if true;
+      allow write: if isAdmin() || isSeeding();
+    }
+    
+    // Experience: Public read, Admin write or initial seed
+    match /experience/{document} {
+      allow read: if true;
+      allow write: if isAdmin() || isSeeding();
+    }
+    
+    // Skills: Public read, Admin write or initial seed
+    match /skills/{document} {
+      allow read: if true;
+      allow write: if isAdmin() || isSeeding();
+    }
+    
+    // Education: Public read, Admin write or initial seed
+    match /education/{document} {
+      allow read: if true;
+      allow write: if isAdmin() || isSeeding();
+    }
+    
+    // Certificates: Public read, Admin write or initial seed
+    match /certificates/{document} {
+      allow read: if true;
+      allow write: if isAdmin() || isSeeding();
+    }
+    
+    // Achievements: Public read, Admin write or initial seed
+    match /achievements/{document} {
+      allow read: if true;
+      allow write: if isAdmin() || isSeeding();
+    }
+    
+    // Gallery: Public read, Admin write or initial seed
+    match /gallery/{document} {
+      allow read: if true;
+      allow write: if isAdmin() || isSeeding();
+    }
+    
+    // Blog: Public read, Admin write or initial seed
+    match /blog/{document} {
+      allow read: if true;
+      allow write: if isAdmin() || isSeeding();
+    }
+    
+    // Comments: Public read, anyone can create unapproved comments, Admin write/approve
+    match /comments/{document} {
+      allow read: if true;
+      allow create: if request.resource.data.isApproved == false || isSeeding();
+      allow update, delete: if isAdmin() || isSeeding();
+    }
+    
+    // Announcements: Public read, Admin write or initial seed
+    match /announcements/{document} {
+      allow read: if true;
+      allow write: if isAdmin() || isSeeding();
+    }
+    
+    // Testimonials: Public read, anyone can create unapproved, Admin write/approve or initial seed
+    match /testimonials/{document} {
+      allow read: if true;
+      allow create: if request.resource.data.isApproved == false || isAdmin() || isSeeding();
+      allow update, delete: if isAdmin() || isSeeding();
+    }
+    
+    // Messages (Contact Form): Admin can read/update/delete, anyone can create
+    match /messages/{document} {
+      allow read, update, delete: if isAdmin();
+      allow create: if true;
+    }
+    
+    // Visitors (logs): Admin can read/delete, anyone can create
+    match /visitors/{document} {
+      allow read, update, delete: if isAdmin();
+      allow create: if true;
+    }
+    
+    // Stats: Anyone can read (for Visitor Dashboard) and write/update (to track stats)
+    match /stats/{document} {
+      allow read: if true;
+      allow write: if true;
+    }
+  }
+}

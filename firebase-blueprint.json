@@ -1,0 +1,305 @@
+{
+  "entities": {
+    "Profile": {
+      "title": "Profile Settings",
+      "description": "User profile and personal details.",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "title": { "type": "string" },
+        "shortIntro": { "type": "string" },
+        "bio": { "type": "string" },
+        "avatarUrl": { "type": "string" },
+        "resumeUrl": { "type": "string" },
+        "email": { "type": "string" },
+        "whatsapp": { "type": "string" },
+        "linkedin": { "type": "string" },
+        "github": { "type": "string" },
+        "location": { "type": "string" },
+        "careerGoals": { "type": "string" },
+        "languages": { "type": "array" },
+        "interests": { "type": "array" },
+        "currentFocus": { "type": "string" }
+      },
+      "required": ["name", "title", "shortIntro"]
+    },
+    "Project": {
+      "title": "Project",
+      "description": "A portfolio project entry.",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string" },
+        "description": { "type": "string" },
+        "liveUrl": { "type": "string" },
+        "githubUrl": { "type": "string" },
+        "imageUrl": { "type": "string" },
+        "technologies": { "type": "array" },
+        "features": { "type": "array" },
+        "startDate": { "type": "string" },
+        "endDate": { "type": "string" },
+        "isFeatured": { "type": "boolean" },
+        "category": { "type": "string" },
+        "order": { "type": "number" }
+      },
+      "required": ["title", "description", "imageUrl", "technologies"]
+    },
+    "Experience": {
+      "title": "Work Experience",
+      "description": "Professional or volunteer experience.",
+      "type": "object",
+      "properties": {
+        "company": { "type": "string" },
+        "role": { "type": "string" },
+        "startDate": { "type": "string" },
+        "endDate": { "type": "string" },
+        "description": { "type": "string" },
+        "type": { "type": "string", "enum": ["Internship", "Freelance", "Volunteer", "Full-time"] },
+        "achievements": { "type": "array" },
+        "order": { "type": "number" }
+      },
+      "required": ["company", "role", "startDate", "description", "type"]
+    },
+    "Skill": {
+      "title": "Professional Skill",
+      "description": "A technical or soft skill with experience level.",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "category": { "type": "string", "enum": ["Frontend", "Backend", "Database", "Cloud", "AI Tools", "Deployment", "Soft Skills"] },
+        "level": { "type": "number" },
+        "description": { "type": "string" },
+        "icon": { "type": "string" },
+        "order": { "type": "number" }
+      },
+      "required": ["name", "category", "level"]
+    },
+    "Education": {
+      "title": "Education Timeline",
+      "description": "Academic timeline entries.",
+      "type": "object",
+      "properties": {
+        "school": { "type": "string" },
+        "degree": { "type": "string" },
+        "fieldOfStudy": { "type": "string" },
+        "startDate": { "type": "string" },
+        "endDate": { "type": "string" },
+        "result": { "type": "string" },
+        "certificateUrl": { "type": "string" },
+        "order": { "type": "number" }
+      },
+      "required": ["school", "degree", "startDate"]
+    },
+    "Certificate": {
+      "title": "Professional Certificate",
+      "description": "Credential details with preview image.",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string" },
+        "organization": { "type": "string" },
+        "date": { "type": "string" },
+        "description": { "type": "string" },
+        "credentialId": { "type": "string" },
+        "credentialUrl": { "type": "string" },
+        "imageUrl": { "type": "string" }
+      },
+      "required": ["title", "organization", "date", "imageUrl"]
+    },
+    "Achievement": {
+      "title": "Achievement",
+      "description": "Significant academic or professional success.",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string" },
+        "date": { "type": "string" },
+        "description": { "type": "string" },
+        "imageUrl": { "type": "string" },
+        "order": { "type": "number" }
+      },
+      "required": ["title", "date", "description"]
+    },
+    "Gallery": {
+      "title": "Gallery Image",
+      "description": "Media item in professional portfolio gallery.",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string" },
+        "description": { "type": "string" },
+        "imageUrl": { "type": "string" },
+        "date": { "type": "string" },
+        "category": { "type": "string" },
+        "order": { "type": "number" }
+      },
+      "required": ["title", "imageUrl"]
+    },
+    "BlogPost": {
+      "title": "Blog Post",
+      "description": "A blog article supporting markdown content.",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string" },
+        "slug": { "type": "string" },
+        "content": { "type": "string" },
+        "summary": { "type": "string" },
+        "coverImage": { "type": "string" },
+        "category": { "type": "string" },
+        "tags": { "type": "array" },
+        "publishDate": { "type": "string" },
+        "isPublished": { "type": "boolean" },
+        "readingTime": { "type": "number" },
+        "views": { "type": "number" },
+        "likes": { "type": "number" }
+      },
+      "required": ["title", "slug", "content", "summary"]
+    },
+    "Comment": {
+      "title": "Blog Comment",
+      "description": "Comments on blog posts subject to admin approval.",
+      "type": "object",
+      "properties": {
+        "postId": { "type": "string" },
+        "authorName": { "type": "string" },
+        "authorEmail": { "type": "string" },
+        "content": { "type": "string" },
+        "date": { "type": "string" },
+        "isApproved": { "type": "boolean" }
+      },
+      "required": ["postId", "authorName", "content", "date", "isApproved"]
+    },
+    "Announcement": {
+      "title": "Announcement",
+      "description": "Dashboard alert or site-wide notice.",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string" },
+        "content": { "type": "string" },
+        "bannerUrl": { "type": "string" },
+        "priority": { "type": "string", "enum": ["Low", "Medium", "High"] },
+        "publishDate": { "type": "string" },
+        "expiryDate": { "type": "string" },
+        "isActive": { "type": "boolean" }
+      },
+      "required": ["title", "content", "priority", "isActive"]
+    },
+    "Testimonial": {
+      "title": "Testimonial",
+      "description": "Client or colleague feedback.",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "role": { "type": "string" },
+        "company": { "type": "string" },
+        "content": { "type": "string" },
+        "rating": { "type": "number" },
+        "date": { "type": "string" },
+        "isApproved": { "type": "boolean" },
+        "avatarUrl": { "type": "string" }
+      },
+      "required": ["name", "content", "isApproved", "date"]
+    },
+    "Message": {
+      "title": "Contact Message",
+      "description": "Message from the public contact form.",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "email": { "type": "string" },
+        "subject": { "type": "string" },
+        "message": { "type": "string" },
+        "date": { "type": "string" },
+        "isRead": { "type": "boolean" }
+      },
+      "required": ["name", "email", "message", "date", "isRead"]
+    },
+    "VisitorLog": {
+      "title": "Visitor Log",
+      "description": "Anonymous tracking of client traffic for dashboards.",
+      "type": "object",
+      "properties": {
+        "ip": { "type": "string" },
+        "country": { "type": "string" },
+        "device": { "type": "string" },
+        "browser": { "type": "string" },
+        "path": { "type": "string" },
+        "timestamp": { "type": "string" },
+        "isReturning": { "type": "boolean" }
+      },
+      "required": ["country", "device", "browser", "path", "timestamp"]
+    },
+    "VisitorStats": {
+      "title": "Visitor Stats",
+      "description": "Aggregate traffic statistics.",
+      "type": "object",
+      "properties": {
+        "totalViews": { "type": "number" },
+        "countries": { "type": "object" },
+        "devices": { "type": "object" },
+        "browsers": { "type": "object" },
+        "pageViews": { "type": "object" },
+        "returningCount": { "type": "number" },
+        "totalVisitors": { "type": "number" }
+      }
+    }
+  },
+  "firestore": {
+    "/profile": {
+      "schema": "Profile",
+      "description": "User profile detail singletons."
+    },
+    "/projects": {
+      "schema": "Project",
+      "description": "Project items shown in the portfolio catalog."
+    },
+    "/experience": {
+      "schema": "Experience",
+      "description": "Career and work history milestones."
+    },
+    "/skills": {
+      "schema": "Skill",
+      "description": "Technical and team skillset categories."
+    },
+    "/education": {
+      "schema": "Education",
+      "description": "Academic schools and certificates earned."
+    },
+    "/certificates": {
+      "schema": "Certificate",
+      "description": "Certificates and image validations."
+    },
+    "/achievements": {
+      "schema": "Achievement",
+      "description": "Career awards, competitions, and timeline highlights."
+    },
+    "/gallery": {
+      "schema": "Gallery",
+      "description": "A collection of beautiful media items with previews."
+    },
+    "/blog": {
+      "schema": "BlogPost",
+      "description": "Written articles with markdown and engagement stats."
+    },
+    "/comments": {
+      "schema": "Comment",
+      "description": "Post commentaries awaiting authorization."
+    },
+    "/announcements": {
+      "schema": "Announcement",
+      "description": "Interactive headers and urgent notifications."
+    },
+    "/testimonials": {
+      "schema": "Testimonial",
+      "description": "Co-worker or manager reviews waiting for approval."
+    },
+    "/messages": {
+      "schema": "Message",
+      "description": "Secure form inquiries submitted through the contact screen."
+    },
+    "/visitors": {
+      "schema": "VisitorLog",
+      "description": "Raw timeline record of pages read."
+    },
+    "/stats": {
+      "schema": "VisitorStats",
+      "description": "Pre-compiled counters for real-time dashboards."
+    }
+  }
+}
